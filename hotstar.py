@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import urllib
 
 hotStarUrl = raw_input('Video url:')
 tempList = hotStarUrl.split('/')
@@ -12,6 +13,8 @@ getSrc = "http://getcdn.hotstar.com/AVS/besc?action=GetCDN&asJson=Y&channel=TABL
 resp = requests.get(getSrc)
 jsonData = json.loads(resp.text)
 videoUrl = jsonData['resultObj']['src']
-print "Paste URL and click play"
-print videoUrl
-os.system('firefox https://www.hlsplayer.net/')
+
+#videofile=urllib.urlretrieve(videoUrl)
+videofile = urllib.URLopener()
+videofile.retrieve(videoUrl,videoId+".m3u8")
+os.system("ffplay -i "+videoId+".m3u8")
