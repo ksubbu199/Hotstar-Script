@@ -17,4 +17,4 @@ videoUrl = jsonData['resultObj']['src']
 #videofile=urllib.urlretrieve(videoUrl)
 videofile = urllib.URLopener()
 videofile.retrieve(videoUrl,videoId+".m3u8")
-os.system("ffplay -protocol_whitelist 'file,http,https,tcp,tls' -i "+videoId+".m3u8")
+os.system("ffplay -i "+videoId+".m3u8")
